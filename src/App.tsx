@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'antd/dist/antd.css';
+import Header from './components/Header';
+import {
+  Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from './pages/Home';
+import {createBrowserHistory} from "history"
+import Categories from './pages/Categories';
+
+const history = createBrowserHistory()
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Container className="App">
+          <Router history={history}>
+        <Header/>
+        <Row>
+          <Col md={2}></Col>
+          <Col>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/categories" component={Categories} />
+            </Switch>
+          </Col>
+        </Row>
+        <Row>footer</Row>
+          </Router>
+      </Container>
   );
 }
 

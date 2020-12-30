@@ -1,0 +1,17 @@
+.headliner{
+    font-size: 3rem;
+    text-transform: capitalize;
+    font-weight: 700;
+    color: darkslategray;
+    text-align: start;
+    margin-top: 20px;
+    padding: 6px 0px;
+}
+
+.card-text{
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    font-weight: 700;
+    color: darkslategray;
+    padding: 6px 0px;
+}
