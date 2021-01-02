@@ -1,0 +1,91 @@
+
+:root{
+    --blueLight : rgb(196, 242, 255);
+    --blueDark : rgb(3, 76, 107);
+
+    --borderRadius : 3px;
+    
+}
+
+.category-card{
+    background-color: var(--blueLight);
+    height:200px;
+    border: 3px solid rgb(228, 228, 228);
+    border-radius: var(--borderRadius);
+    box-shadow: 0px 0px 10px rgba(205, 218, 219, 0.13);
+    cursor: pointer;
+    padding:10px;
+    min-height: 12vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+  }
+  
+  .category-card:hover{
+    box-shadow: 0px 0px 20px rgba(205, 218, 219, 0.281);
+    transform: scale(1.05);
+    background-color: rgb(200, 217, 231);
+    border: 3px solid rgb(201, 196, 196);
+  }
+  
+  .chips{
+    padding: 10px 19px;
+    background-color: var(--blueLight);
+    color: var(--blueDark);
+    border: 3px solid lightgray;
+    margin: 10px;
+    margin-top: 10px;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    font-weight: 700;
+    border-radius: var(--borderRadius);
+    width: 380px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px var(--blueLight);
+    transition: .3s;
+  }
+  
+  .chips-selected{
+    background-color: var(--blueDark);
+    color: var(--blueLight);
+    border: 0px solid rgb(228, 228, 228);
+
+  }
+  
+  .chips-holder{
+    display: flex;  
+    flex-wrap: nowrap;
+    /* align-items: center; */
+    justify-content: flex-start;
+    overflow-x: scroll;
+    width: 100%;
+  }
+
+  .post-card{
+    color: var(--blueDark);
+    border: 2px solid rgb(228, 228, 228);
+    padding: 10px 32px;
+    border-radius: var(--borderRadius)x;
+    font-weight: 600;
+    
+  }
+
+  .btn{
+      background-color: var(--blueDark);
+      color: var(--blueLight);
+      border: none;
+      box-shadow: 0px 0px 10px var(--blueLight);
+      font-weight: 700;
+      transition: .3s;
+  }
+  .btn:hover{
+    background-color: var(--blueDark);
+    color: var(--blueLight);
+    box-shadow: 0px 0px 15px var(--blueLight);
+    
+  }
+  

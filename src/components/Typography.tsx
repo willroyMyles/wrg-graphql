@@ -6,11 +6,9 @@ export class Headliner extends PureComponent{
 
     render(){
         return (
-            <Row>
-                <Col style={{textAlign:"start", marginTop:10}}>
+                <Col style={{textAlign:"start"}}>
                 <div className="headliner">{this.props.children}</div>
                 </Col>
-            </Row>
         )
     }
 }

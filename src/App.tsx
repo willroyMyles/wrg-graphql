@@ -5,6 +5,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'antd/dist/antd.css';
+import './assets/css/style.css'
+
 import Header from './components/Header';
 import {
   Router,
@@ -15,12 +17,35 @@ import {
 import Home from './pages/Home';
 import {createBrowserHistory} from "history"
 import Categories from './pages/Categories';
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
+import Category from './templates/Category';
 
 const history = createBrowserHistory()
+
+const link = createHttpLink({
+  uri: 'http://localhost:1337/graphql',
+});
+
+const client = new ApolloClient({
+  link:link,
+  cache: new InMemoryCache(),
+  connectToDevTools:true,
+  // headers: {
+  //     "Content-Type" : "application/json",
+  //     "Accept": "application/json",
+  //     "Access-Control-Allow-Methods":"*",
+  //     "origin" :"http://localhost:3000",
+  //     "Access-Control-Allow-Headers": "*",
+  //     "Access-Control-Allow-Method": "*",
+  //     "Access-Control-Allow-Origin" : "http://localhost:3000"
+  // }
+});
 
 function App() {
   
   return (
+    <ApolloProvider client={client}  >
+
       <Container className="App">
           <Router history={history}>
         <Header/>
@@ -30,12 +55,14 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/categories" component={Categories} />
+              <Route exact path="/category" component={Category} />
             </Switch>
           </Col>
         </Row>
         <Row>footer</Row>
           </Router>
       </Container>
+    </ApolloProvider>
   );
 }
 

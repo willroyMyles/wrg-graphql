@@ -1,17 +1,20 @@
+import { useQuery } from '@apollo/client'
 import { Divider, List } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import { Headliner, Cardliner } from '../components/Typography'
 import api from '../data-layer/api/API_V1'
+import { CATEGORIES } from '../data-layer/api/Queries'
 
 function Categories() {
 
-    const [data, setdata] = useState<any[]>([])
+    const {loading, error, data} = useQuery(CATEGORIES)
+    const history = useHistory();
 
-    useEffect(() => {
-      const data1 = api.getCategories()
-      setdata(data1);
-    }, [])
+    const handleClick = (item:any, index:number) =>{
+        history.push("/category",  {title:item["title"], sub : item["sub"], cat:item["title"]});
+    }
 
 
     return (
@@ -19,12 +22,13 @@ function Categories() {
         <Headliner>categories</Headliner>        
         <Divider />
         <List  
-            dataSource={data}
+            dataSource={data? data["categories"] : []}
+            loading={loading}
             grid={{gutter:20, md:3, xs:3, sm:3, lg:3, xl:4, xxl:4}}
-            renderItem={(item, index)=>{                
+            renderItem={(item : any, index)=>{                
                 return <List.Item>
-                    <div className="category-card">
-                        <Cardliner>{item.title}</Cardliner>
+                    <div onClick={() => handleClick(item, index) } className="category-card">
+                        <Cardliner>{item["title"]}</Cardliner>
                     </div>
                 </List.Item>
             }}
