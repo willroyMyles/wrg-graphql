@@ -29,17 +29,21 @@ const MiddleHolder = observer(()  =>{
               <Route exact path="/category" component={Category} />
             </Switch>
         <Drawer 
+        className="drawer"
         visible={ui_manager.drawerVisible}
+        drawerStyle={{
+            backgroundColor : "var(--pastel-bg)"
+        }}
         onClose={()=>{
             ui_manager.drawerVisible= false
             setnum(10);
         }}
-        title="tired"
         placement="right"
           closable={true}
           getContainer={false}
           style={{ position: 'absolute' }}
-          width={"50%"}
+          width={"100%"}
+          destroyOnClose
         >
           {ui_manager.drawerNode}
         </Drawer>

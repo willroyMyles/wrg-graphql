@@ -1,13 +1,21 @@
 
 :root{
-    --blueLight : rgb(196, 242, 255);
+    --blueLight : rgb(215, 245, 253);
     --blueDark : rgb(3, 76, 107);
 
     --borderRadius : 3px;
+    --pastel-bg: rgba(241,245,250,1)
     
 }
 body{
     padding-bottom: 10vh;
+    background-color: var(--pastel-bg);
+}
+
+html{
+    background-color: var(--pastel-bg);
+    font-size: 1.0rem;
+
 }
 
 .header, .footer{
@@ -20,6 +28,14 @@ body{
     height: 10vh;
     position: absolute;
     bottom: 0;
+}
+
+.input-text{
+    font-weight: 600;
+    margin-top :25px;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    font-size: 1.0rem;
 }
 
 .category-card{
@@ -92,6 +108,7 @@ body{
   .btn{
       background-color: var(--blueDark);
       color: var(--blueLight);
+      text-transform: capitalize;
       border: none;
       box-shadow: 0px 0px 10px var(--blueLight);
       font-weight: 700;
@@ -103,4 +120,40 @@ body{
     box-shadow: 0px 0px 15px var(--blueLight);
     
   }
+
+  .drawer{
+      background-color: var(--pastel-bg);
+  }
   
+  .create-post-container{
+      background-color: white;
+      border-radius: var(--borderRadius);
+      min-height: 30vh;
+      box-shadow: 0px 0px 10px rgba(100,100,100,.1);
+      padding: 20px 20px;
+      padding-bottom: 60px;
+      margin-top: 15px;
+    align-items: center;
+  }
+
+
+  .inputs *{
+      border:none;
+      font-size: 1rem;
+
+  }
+  .inputs{
+      background-color: var(--pastel-bg);
+      border: 0px solid var(--blueDark);
+      border-left: 5px solid var(--blueDark);
+      /* box-shadow: 3px 3px 3px rgba(100,100,120,.1); */
+      border-radius: 0px;
+      left: 0px;
+      margin-left: 0px;
+      display: flex;
+      outline: none;
+      min-height: 50px;
+  }
+  .inputs::placeholder{
+      font-size: 1rem;
+  }

@@ -26,3 +26,15 @@ export class Cardliner extends PureComponent{
     }
 }
 
+export class InputPromptText extends PureComponent{
+    render(){
+        return (
+            <Row>
+                <Col style={{textAlign:"start"}}>
+                <div className="input-text">{this.props.children}</div>
+                </Col>
+            </Row>
+        )
+    }
+}
+
