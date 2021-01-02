@@ -19,6 +19,11 @@ import {createBrowserHistory} from "history"
 import Categories from './pages/Categories';
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 import Category from './templates/Category';
+import Footer from './components/Footer';
+import { Drawer } from 'antd';
+import { observer } from 'mobx-react';
+import ui_manager from './data-layer/store/ui_manager';
+import MiddleHolder from './MiddleHolder';
 
 const history = createBrowserHistory()
 
@@ -41,29 +46,20 @@ const client = new ApolloClient({
   // }
 });
 
-function App() {
+const App = observer(() => {
   
   return (
     <ApolloProvider client={client}  >
 
-      <Container className="App">
+      <Container fluid className="App" style={{padding:0}}>
           <Router history={history}>
         <Header/>
-        <Row>
-          <Col md={2}></Col>
-          <Col>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/categories" component={Categories} />
-              <Route exact path="/category" component={Category} />
-            </Switch>
-          </Col>
-        </Row>
-        <Row>footer</Row>
+       <MiddleHolder />
+        <Footer />
           </Router>
       </Container>
     </ApolloProvider>
   );
-}
+})
 
 export default App;

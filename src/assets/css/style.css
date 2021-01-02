@@ -6,6 +6,21 @@
     --borderRadius : 3px;
     
 }
+body{
+    padding-bottom: 10vh;
+}
+
+.header, .footer{
+    background-color: var(--blueDark);
+    color: white;
+    padding: 10px 0px;
+    font-size: 1.5rem;
+}
+.footer{
+    height: 10vh;
+    position: absolute;
+    bottom: 0;
+}
 
 .category-card{
     background-color: var(--blueLight);
