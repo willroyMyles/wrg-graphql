@@ -1,10 +1,13 @@
 
 :root{
-    --blueLight : rgb(215, 245, 253);
-    --blueDark : rgb(3, 76, 107);
+    --secondary : rgb(215, 245, 253);
+    --primary : rgb(3, 74, 107);
+    --transparent : rgba(0,0,0,0);
+   
 
     --borderRadius : 7px;
     --pastel-bg: rgba(241,245,250,1)
+    
     
 }
 body{
@@ -15,11 +18,11 @@ body{
 html{
     background-color: var(--pastel-bg);
     font-size: 1.0rem;
-
+    transition: .3s;
 }
 
 .header, .footer{
-    background-color: var(--blueDark);
+    background-color: var(--primary);
     color: white;
     padding: 10px 0px;
     font-size: 1.5rem;
@@ -39,7 +42,7 @@ html{
 }
 
 .category-card{
-    background-color: var(--blueLight);
+    background-color: var(--secondary);
     height:200px;
     border: 3px solid rgb(228, 228, 228);
     border-radius: var(--borderRadius);
@@ -63,8 +66,8 @@ html{
   
   .chips{
     padding: 10px 19px;
-    background-color: var(--blueLight);
-    color: var(--blueDark);
+    background-color: var(--secondary);
+    color: var(--primary);
     border: 3px solid lightgray;
     margin: 10px;
     margin-top: 10px;
@@ -76,13 +79,13 @@ html{
     border-radius: var(--borderRadius);
     width: 380px;
     cursor: pointer;
-    box-shadow: 0px 0px 10px var(--blueLight);
+    box-shadow: 0px 0px 10px var(--secondary);
     transition: .3s;
   }
   
   .chips-selected{
-    background-color: var(--blueDark);
-    color: var(--blueLight);
+    background-color: var(--primary);
+    color: var(--secondary);
     border: 0px solid rgb(228, 228, 228);
 
   }
@@ -97,32 +100,54 @@ html{
   }
 
   .post-card{
-    color: var(--blueDark);
-    border: 2px solid rgb(228, 228, 228);
+    color: var(--primary);
+    border: 0px solid rgb(228, 228, 228);
     padding: 10px 32px;
-    border-radius: var(--borderRadius)x;
+    border-radius: var(--borderRadius);
     font-weight: 600;
     overflow: hidden;
+    box-shadow: 0px 0px 5px rgba(100,100,100,.1);
   }
 
   .btn{
-      background-color: var(--blueDark);
-      color: var(--blueLight);
+      background-color: var(--primary);
+      color: var(--secondary);
       text-transform: capitalize;
       border: none;
-      box-shadow: 0px 0px 10px var(--blueLight);
+      box-shadow: 0px 0px 10px var(--secondary);
       font-weight: 700;
       transition: .3s;
   }
   .btn:hover{
-    background-color: var(--blueDark);
-    color: var(--blueLight);
-    box-shadow: 0px 0px 15px var(--blueLight);
+    background-color: var(--primary);
+    color: var(--secondary);
+    box-shadow: 0px 0px 15px var(--secondary);
     
   }
+  
+  .outline{
+      background-color: var(--transparent);
+      color: var(--primary);
+      box-shadow: none;
+      border: 3px solid var(--transparent);
+      font-weight: 500;
+    }
+    
+    .outline:hover{
+        background-color: var(--pastel-bg);
+        color: var(--primary);
+        box-shadow: none;
+        border: 3px solid var(--pastel-bg);
+        font-weight: 500;
+    }
+    
+    
+      .btn:active{
+          filter: brightness(.9);
+      }
 
-  .drawer{
-      background-color: var(--pastel-bg);
+    .drawer{
+        background-color: var(--pastel-bg);
   }
   
   .create-post-container{
@@ -144,8 +169,8 @@ html{
   }
   .inputs{
       background-color: var(--pastel-bg);
-      border: 0px solid var(--blueDark);
-      border-left: 5px solid var(--blueDark);
+      border: 0px solid var(--primary);
+      border-left: 5px solid var(--primary);
       /* box-shadow: 3px 3px 3px rgba(100,100,120,.1); */
       border-radius: 0px;
       left: 0px;
@@ -156,4 +181,13 @@ html{
   }
   .inputs::placeholder{
       font-size: 1rem;
+  }
+  .comment-card{
+      background-color: var(--pastel-bg);
+      text-align: start;
+      padding: 2px 10px;
+      border-radius: var(--borderRadius);
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-left: 3px solid var(--primary);
   }

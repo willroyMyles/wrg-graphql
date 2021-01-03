@@ -1,17 +1,22 @@
 import { useQuery } from '@apollo/client'
 import { Button, Dropdown, List, Menu } from 'antd';
 import Paragraph from 'antd/lib/typography/Paragraph';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, Col, Row } from 'react-bootstrap';
-import { POSTS } from '../data-layer/api/Queries'
+import {  POSTSBY } from '../data-layer/api/Queries'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import {  useHistory } from 'react-router-dom';
+import Link from 'antd/lib/typography/Link';
 dayjs.extend(relativeTime);
 
 function PostsView({ cat, sub }: { cat: string, sub: string }) {
+    const { loading, data, error, refetch, client,  } = useQuery(POSTSBY,{
+        partialRefetch : true,
+        variables : {c:cat, s:sub}
+    })
+  
 
-    console.log(cat, sub)
-    const { loading, data, error } = useQuery(POSTS(cat))
 
     const menu = (
         <Menu>
@@ -48,6 +53,10 @@ function PostsView({ cat, sub }: { cat: string, sub: string }) {
       );
 
 
+      const history = useHistory()
+      const navigate = (item:any) =>{
+            history.push(`/view-post/${item["id"]}`, {post : item});
+      }
 
     return (
         <div>
@@ -55,13 +64,17 @@ function PostsView({ cat, sub }: { cat: string, sub: string }) {
                 style={{ height: "60vh", padding: 10 }}
                 loading={loading}
                 dataSource={data ? data.posts : []}
-                grid={{ gutter: 20, xs: 2, sm: 2, md: 2, xl: 2, xxl: 3 }}
+                grid={{ gutter: 20, xs: 1, sm: 2, md: 3, xl: 3, xxl: 3 }}
                 renderItem={(item: any, index) => {
                     return <List.Item>
                         <Card className="post-card" >
                            
                                     <Row>
-                                        <Col style={{ textAlign: "start", padding: 0 }}>{item.title}</Col>
+                                        <Col md={9} style={{ textAlign: "start", padding: 0, fontSize:"1.1rem" }}>
+                                            <Link onClick={() => navigate(item)}>
+                                            {item.title}
+                                            </Link>
+                                        </Col>
                                         <Col style={{ textAlign: "end", padding: 0 }}><DropdownMenu /></Col>
                                     </Row>
                                     <br />

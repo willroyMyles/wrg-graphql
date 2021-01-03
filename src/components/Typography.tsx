@@ -38,3 +38,15 @@ export class InputPromptText extends PureComponent{
     }
 }
 
+export class HintText extends PureComponent{
+    render(){
+        return (
+            <Row>
+                <Col style={{textAlign:"start"}}>
+                <div className="hint-text">{this.props.children}</div>
+                </Col>
+            </Row>
+        )
+    }
+}
+

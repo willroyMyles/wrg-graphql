@@ -15,3 +15,11 @@
     color: darkslategray;
     padding: 6px 0px;
 }
+
+.hint-text{
+    background-color: var(--transparent);
+    color: var(--primary);
+    opacity: .7;
+    font-weight: 500;
+    font-size: .84rem;
+}

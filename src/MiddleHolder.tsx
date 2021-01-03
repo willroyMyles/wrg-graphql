@@ -7,6 +7,7 @@ import ui_manager from './data-layer/store/ui_manager'
 import Categories from './pages/Categories'
 import CreatePost from './pages/CreatePost'
 import Home from './pages/Home'
+import ViewPost from './pages/ViewPost'
 import Category from './templates/Category'
 
 
@@ -29,6 +30,7 @@ const MiddleHolder = observer(()  =>{
               <Route exact path="/categories" component={Categories} />
               <Route exact path="/category" component={Category} />
               <Route exact path="/create-post" component={CreatePost} />
+              <Route exact path="/view-post/:postId" component={ViewPost} />
             </Switch>
         {/* <Drawer 
         className="drawer"

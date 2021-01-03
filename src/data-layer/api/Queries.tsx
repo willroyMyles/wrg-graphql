@@ -11,9 +11,18 @@ query GetCategories{
 `;
 
 
-export const POSTS = (cat:string) => gql`
-query {
-    posts(where:{category : "${cat}" }){
+export const GET_COMMENTS = gql`
+query GetComments($id:String){
+  comments(where : {post : {_id : $id}} ){
+    content
+    
+  }
+}
+`
+
+export const POSTSBY =  gql`
+query getPosts($c:String, $s:String){
+    posts(where:{category : $c, sub_category:$s }){
         title
         category
         createdAt
