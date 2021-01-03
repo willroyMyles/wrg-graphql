@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import Posts from '../../models/Posts';
 
 export const CATEGORIES = gql`
 query GetCategories{
@@ -28,3 +29,13 @@ query {
   }
 `;
 
+export const CREATE_POST = gql`
+mutation CreatePost($post: PostInput){
+  createPost(input:{data: $post}){
+    post{
+      title
+      id
+    }
+  }
+}
+`

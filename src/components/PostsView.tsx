@@ -1,14 +1,53 @@
 import { useQuery } from '@apollo/client'
-import { Divider, List } from 'antd';
+import { Button, Dropdown, List, Menu } from 'antd';
 import Paragraph from 'antd/lib/typography/Paragraph';
 import React from 'react'
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 import { POSTS } from '../data-layer/api/Queries'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime);
 
 function PostsView({ cat, sub }: { cat: string, sub: string }) {
 
     console.log(cat, sub)
     const { loading, data, error } = useQuery(POSTS(cat))
+
+    const menu = (
+        <Menu>
+          <Menu.Item>
+            <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+              1st menu item
+            </a>
+          </Menu.Item>
+          <Menu.Item>
+            <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+              2nd menu item
+            </a>
+          </Menu.Item>
+          <Menu.Item>
+            <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+              3rd menu item
+            </a>
+          </Menu.Item>
+        </Menu>
+      );
+
+      
+    const DropdownMenu = () => (
+        <Dropdown key="more" overlay={menu}>
+          <Button
+            style={{
+              border: 'none',
+              padding: 0,
+            }}
+          >
+           ...
+          </Button>
+        </Dropdown>
+      );
+
+
 
     return (
         <div>
@@ -20,18 +59,19 @@ function PostsView({ cat, sub }: { cat: string, sub: string }) {
                 renderItem={(item: any, index) => {
                     return <List.Item>
                         <Card className="post-card" >
+                           
                                     <Row>
                                         <Col style={{ textAlign: "start", padding: 0 }}>{item.title}</Col>
-                                        <Col style={{ textAlign: "end", padding: 0 }}>button</Col>
+                                        <Col style={{ textAlign: "end", padding: 0 }}><DropdownMenu /></Col>
                                     </Row>
                                     <br />
                                     <Row style={{height:15}}></Row>
                             <Row>
-                                <Col md={8}>
-                                    <Row>{item["createdAt"]}</Row>
+                                <Col>
+                                    <Row>{ dayjs(item["createdAt"] ).fromNow()}</Row>
                                     <br />
                                     <Row >
-                                        <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'show more' }}>
+                                        <Paragraph ellipsis={{ rows: 1, expandable: false, symbol: 'show more' }}>
                                             {item["content"]}
                                         </Paragraph>
                                     </Row>

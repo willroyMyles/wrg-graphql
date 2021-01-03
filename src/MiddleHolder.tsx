@@ -5,6 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { Route, Switch } from 'react-router-dom'
 import ui_manager from './data-layer/store/ui_manager'
 import Categories from './pages/Categories'
+import CreatePost from './pages/CreatePost'
 import Home from './pages/Home'
 import Category from './templates/Category'
 
@@ -21,14 +22,15 @@ const MiddleHolder = observer(()  =>{
     return (
         <Container style={{overflowX:"hidden"}}>
         <Row>
-          <Col md={2}></Col>
+          {/* <Col md={2}></Col> */}
           <Col>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/categories" component={Categories} />
               <Route exact path="/category" component={Category} />
+              <Route exact path="/create-post" component={CreatePost} />
             </Switch>
-        <Drawer 
+        {/* <Drawer 
         className="drawer"
         visible={ui_manager.drawerVisible}
         drawerStyle={{
@@ -46,7 +48,7 @@ const MiddleHolder = observer(()  =>{
           destroyOnClose
         >
           {ui_manager.drawerNode}
-        </Drawer>
+        </Drawer> */}
           </Col>
         </Row>
         </Container>

@@ -55,8 +55,8 @@ const App = observer(() => {
           <Router history={history}>
         <Header/>
        <MiddleHolder />
-        <Footer />
           </Router>
+        <Footer />
       </Container>
     </ApolloProvider>
   );

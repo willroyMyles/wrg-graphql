@@ -3,7 +3,7 @@
     --blueLight : rgb(215, 245, 253);
     --blueDark : rgb(3, 76, 107);
 
-    --borderRadius : 3px;
+    --borderRadius : 7px;
     --pastel-bg: rgba(241,245,250,1)
     
 }
@@ -26,7 +26,7 @@ html{
 }
 .footer{
     height: 10vh;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
 }
 
@@ -102,7 +102,7 @@ html{
     padding: 10px 32px;
     border-radius: var(--borderRadius)x;
     font-weight: 600;
-    
+    overflow: hidden;
   }
 
   .btn{
