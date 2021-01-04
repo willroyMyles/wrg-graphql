@@ -48,3 +48,14 @@ mutation CreatePost($post: PostInput){
   }
 }
 `
+
+export const CREATE_COMMENT = gql`
+  mutation CreateComment($comment : CommentInput){
+    createComment(input:{data:$comment}){
+      comment{
+        content
+        id
+      }
+    }
+  }
+`

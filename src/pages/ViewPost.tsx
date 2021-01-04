@@ -1,11 +1,12 @@
 import Paragraph from 'antd/lib/typography/Paragraph'
 import dayjs from 'dayjs'
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import DropdownMenu from 'react-bootstrap/esm/DropdownMenu'
 import { useLocation, useParams } from 'react-router-dom'
 import BackBtn from '../components/BackBtn'
 import BreadCrumbs from '../components/BreadCrumb'
+import CommentBox from '../components/CommentBox'
 import { HintText } from '../components/Typography'
 import Comments from '../templates/Comments'
 
@@ -16,10 +17,13 @@ const ViewPost = () => {
 
     const item = location.state["post"];
 
+    const [isCommentVisible, setisCommentVisible] = useState(false)
+    const [isOfferVisible, setisOfferVisible] = useState(false)
 
+    
 
-    if (item) {
-        return (
+    if(!item) return <div />
+    else return (
             <div>
                 <Row>
 
@@ -69,11 +73,19 @@ const ViewPost = () => {
                                 <Row>
                                     <Col><div className=" btn outline">watch</div></Col>
                                     <Col><div className=" btn outline">offer help</div></Col>
-                                    <Col><div className=" btn outline">comment</div></Col>
+                                    <Col><div onClick={() => setisCommentVisible( v => !v)}  className=" btn outline">comment</div></Col>
 
                                 </Row>
+
+                              
+
                             </Container>
                         </Card>
+
+                        <Container style={{padding: 0, marginTop:25}}>
+                                    <CommentBox id={item["id"]} visable={isCommentVisible} setVisible={setisCommentVisible} />
+                            </Container>
+
                     </Col>
                     <Col style={{ paddingTop: 10 }}>
                         <Comments id={params["postId"]} />
@@ -81,7 +93,7 @@ const ViewPost = () => {
                 </Row>
             </div>
         )
-    } else return <div />
+    
 }
 
 export default ViewPost
