@@ -3,6 +3,9 @@
     --secondary : rgb(215, 245, 253);
     --primary : rgb(3, 74, 107);
     --transparent : rgba(0,0,0,0);
+
+    --offer-primary : rgb(228, 13, 13);
+    --offer-secondary : rgb(255, 220, 220);;
    
 
     --borderRadius : 7px;
@@ -182,12 +185,29 @@ html{
   .inputs::placeholder{
       font-size: 1rem;
   }
+
+  
   .comment-card{
       background-color: var(--pastel-bg);
       text-align: start;
-      padding: 2px 10px;
+      padding: 9px 25px;
       border-radius: var(--borderRadius);
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px;
       border-left: 3px solid var(--primary);
+  }
+
+
+
+
+
+
+  /* modifiers */
+
+  .offer{
+    border-left: 5px solid var(--offer-primary);
+    background-color: var(--offer-secondary);    
+  }
+  .comment-card.offer{
+    border-left: 3px solid var(--offer-primary);
   }

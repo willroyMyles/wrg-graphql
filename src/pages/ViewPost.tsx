@@ -18,7 +18,7 @@ const ViewPost = () => {
     const item = location.state["post"];
 
     const [isCommentVisible, setisCommentVisible] = useState(false)
-    const [isOfferVisible, setisOfferVisible] = useState(false)
+    const [isOffer, setisOffer] = useState(false)
 
     
 
@@ -72,8 +72,14 @@ const ViewPost = () => {
                                 <hr />
                                 <Row>
                                     <Col><div className=" btn outline">watch</div></Col>
-                                    <Col><div className=" btn outline">offer help</div></Col>
-                                    <Col><div onClick={() => setisCommentVisible( v => !v)}  className=" btn outline">comment</div></Col>
+                                    <Col><div onClick={() =>{
+                                        setisCommentVisible(true)
+                                        setisOffer(true)
+                                    }} className=" btn outline">offer help</div></Col>
+                                    <Col><div onClick={() => {
+                                        setisCommentVisible(true)
+                                        setisOffer(false)
+                                    }}  className=" btn outline">comment</div></Col>
 
                                 </Row>
 
@@ -83,7 +89,7 @@ const ViewPost = () => {
                         </Card>
 
                         <Container style={{padding: 0, marginTop:25}}>
-                                    <CommentBox id={item["id"]} visable={isCommentVisible} setVisible={setisCommentVisible} />
+                                    <CommentBox isOffer={isOffer} id={item["id"]} visable={isCommentVisible} setVisible={setisCommentVisible} />
                             </Container>
 
                     </Col>

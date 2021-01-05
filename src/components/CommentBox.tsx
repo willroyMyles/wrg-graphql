@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { CREATE_COMMENT } from '../data-layer/api/Queries'
 import FormControler from './FormControler'
 
-const CommentBox = ({ visable, setVisible, id }: { visable: boolean, setVisible: Dispatch<boolean>, id:string }) => {
+const CommentBox = ({ visable, setVisible, id, isOffer }: { visable: boolean, setVisible: Dispatch<boolean>, id:string, isOffer:boolean }) => {
 
 
     const [createComment,  mutationOption] = useMutation(CREATE_COMMENT)
@@ -18,10 +18,11 @@ const CommentBox = ({ visable, setVisible, id }: { visable: boolean, setVisible:
     const executeCreation = (data:any) => {
         console.log(data);
         createComment({
-            variables : {comment : {post : id, content: data["content"]}}
+            variables : {comment : {post : id, content: data["content"], isOffer : isOffer}}
         })
-        
     }
+
+    const getIsOfferStyle = () => isOffer? "inputs offer" : "inputs"
 
     if (!visable) return <div />
 
@@ -32,7 +33,7 @@ const CommentBox = ({ visable, setVisible, id }: { visable: boolean, setVisible:
             <Row>
                 <Col>
                     <FormControler
-                        child={<Input.TextArea autoSize={{ minRows: 4, maxRows: 10 }} className="inputs" bordered={false} placeholder="content of comment..." />}
+                        child={<Input.TextArea autoSize={{ minRows: 4, maxRows: 10 }} className={getIsOfferStyle()} bordered={false} placeholder="content of comment..." />}
                         control={control}
                         name="content"
                     />

@@ -15,7 +15,8 @@ export const GET_COMMENTS = gql`
 query GetComments($id:String){
   comments(where : {post : {_id : $id}} ){
     content
-    
+    createdAt
+    isOffer
   }
 }
 `
