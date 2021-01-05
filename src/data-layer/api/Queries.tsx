@@ -35,9 +35,32 @@ query getPosts($c:String, $s:String){
         id
         content
         year
+        views
+        comments{
+          id
+        }
     }
   }
 `;
+
+export const GET_POST = gql`
+  query getPost($id : ID!){
+    post(id : $id){
+      views
+    }
+  }
+`
+
+export const UPDATE_POST = gql`
+  mutation operation( $id : ID!, $views : Int){
+    updatePost(input:{where:{id:$id}, data:{views:$views}}){
+      post{
+          views
+          id
+        }
+    }
+  }
+`
 
 export const CREATE_POST = gql`
 mutation CreatePost($post: PostInput){

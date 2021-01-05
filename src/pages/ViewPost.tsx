@@ -1,6 +1,7 @@
+import { useMutation } from '@apollo/client'
 import Paragraph from 'antd/lib/typography/Paragraph'
 import dayjs from 'dayjs'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import DropdownMenu from 'react-bootstrap/esm/DropdownMenu'
 import { useLocation, useParams } from 'react-router-dom'
@@ -8,20 +9,44 @@ import BackBtn from '../components/BackBtn'
 import BreadCrumbs from '../components/BreadCrumb'
 import CommentBox from '../components/CommentBox'
 import { HintText } from '../components/Typography'
+import { GET_POST, UPDATE_POST } from '../data-layer/api/Queries'
 import Comments from '../templates/Comments'
 
 const ViewPost = () => {
     const location = useLocation<any>()
     const params: any = useParams()
-    console.log(location, params);
-
     const item = location.state["post"];
+    const {postId} = params;
 
     const [isCommentVisible, setisCommentVisible] = useState(false)
     const [isOffer, setisOffer] = useState(false)
-
     
+    const [operation, options] = useMutation(UPDATE_POST, {
+        refetchQueries: [{
+            query : GET_POST,
+            variables : {id : postId}
+        }]
+    })
+    
+    const updatePst = () =>{
+        let currentViews = item["views"] || 0;
+        currentViews++
+        
+        operation({
+            variables : {views : currentViews, id : postId}
+        }).then(res=>{
+            console.log(res);
+            
+        })
+    }
 
+    useEffect(() => {
+        if(item){
+            updatePst();
+        }
+    }, [item])
+    
+    
     if(!item) return <div />
     else return (
             <div>

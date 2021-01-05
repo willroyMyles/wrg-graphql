@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import {  useHistory } from 'react-router-dom';
 import Link from 'antd/lib/typography/Link';
+import { HintText } from './Typography';
 dayjs.extend(relativeTime);
 
 function PostsView({ cat, sub }: { cat: string, sub: string }) {
@@ -64,7 +65,7 @@ function PostsView({ cat, sub }: { cat: string, sub: string }) {
                 style={{ height: "60vh", padding: 10 }}
                 loading={loading}
                 dataSource={data ? data.posts : []}
-                grid={{ gutter: 20, xs: 1, sm: 2, md: 3, xl: 3, xxl: 3 }}
+                grid={{ gutter: 20, xs: 1, sm: 2, md: 2, xl: 2, xxl: 3 }}
                 renderItem={(item: any, index) => {
                     return <List.Item>
                         <Card className="post-card" >
@@ -75,13 +76,18 @@ function PostsView({ cat, sub }: { cat: string, sub: string }) {
                                             {item.title}
                                             </Link>
                                         </Col>
-                                        <Col style={{ textAlign: "end", padding: 0 }}><DropdownMenu /></Col>
+                                        <Col style={{ textAlign: "end", padding: 0 }}>
+                                          <Row>
+                                            <Col>{item["comments"].length} comments</Col>
+                                            <Col>{item["views"]} views</Col>
+                                            <Col><DropdownMenu /></Col>
+                                          </Row>
+                                        </Col>
                                     </Row>
-                                    <br />
-                                    <Row style={{height:15}}></Row>
+                                    <Row style={{height:5}}></Row>
                             <Row>
-                                <Col>
-                                    <Row>{ dayjs(item["createdAt"] ).fromNow()}</Row>
+                                <Col md={12}>
+                                    <Row><HintText>{ dayjs(item["createdAt"] ).fromNow()}</HintText></Row>
                                     <br />
                                     <Row >
                                         <Paragraph ellipsis={{ rows: 1, expandable: false, symbol: 'show more' }}>
@@ -91,21 +97,19 @@ function PostsView({ cat, sub }: { cat: string, sub: string }) {
                                     <hr />
                                 </Col>
                                 <Col>
-                                    <Row>
-                                        <Col>{item["year"]}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>{item["make"]}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>{item["model"]}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>{item["category"]}</Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>{item["sub_category"]}</Col>
-                                    </Row>
+                                <Row>
+
+<Col><HintText>   {item["year"]} </HintText></Col>
+
+<Col><HintText>  {item["make"]}  </HintText></Col>
+
+<Col><HintText>   {item["model"]} </HintText></Col>
+
+<Col><HintText>  {item["category"]}  </HintText></Col>
+
+<Col><HintText>   {item["sub_category"]} </HintText></Col>
+
+</Row>
                                 </Col>
                             </Row>
 
