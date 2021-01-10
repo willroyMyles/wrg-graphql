@@ -9,11 +9,17 @@
 }
 
 .card-text{
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-transform: capitalize;
     font-weight: 700;
     color: darkslategray;
-    padding: 6px 0px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+   text-align: center;
+
 }
 
 .hint-text{

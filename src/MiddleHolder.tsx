@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Route, Switch } from 'react-router-dom'
 import ui_manager from './data-layer/store/ui_manager'
+import AuthPage from './pages/auth/AuthPage'
 import Categories from './pages/Categories'
 import CreatePost from './pages/CreatePost'
 import Home from './pages/Home'
@@ -27,6 +28,7 @@ const MiddleHolder = observer(()  =>{
           <Col>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/auth" component={AuthPage} />
               <Route exact path="/categories" component={Categories} />
               <Route exact path="/category" component={Category} />
               <Route exact path="/create-post" component={CreatePost} />

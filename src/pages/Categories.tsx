@@ -24,11 +24,11 @@ function Categories() {
         <List  
             dataSource={data? data["categories"] : []}
             loading={loading}
-            grid={{gutter:20, md:3, xs:3, sm:3, lg:3, xl:4, xxl:4}}
+            grid={{gutter:20, md:3, xs:3, sm:3, lg:3, xl:4, xxl:5}}
             renderItem={(item : any, index)=>{                
                 return <List.Item>
                     <div onClick={() => handleClick(item, index) } className="category-card">
-                        <Cardliner>{item["title"]}</Cardliner>
+                        <div>{item["title"]}</div>
                     </div>
                 </List.Item>
             }}

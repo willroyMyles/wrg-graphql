@@ -65,7 +65,7 @@ function PostsView({ cat, sub }: { cat: string, sub: string }) {
                 style={{ height: "60vh", padding: 10 }}
                 loading={loading}
                 dataSource={data ? data.posts : []}
-                grid={{ gutter: 20, xs: 1, sm: 2, md: 2, xl: 2, xxl: 3 }}
+                grid={{ gutter: 20, xs: 1, sm: 2, md: 2, xl: 2, xxl: 2 }}
                 renderItem={(item: any, index) => {
                     return <List.Item>
                         <Card className="post-card" >

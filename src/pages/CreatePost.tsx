@@ -87,16 +87,9 @@ const CreatePost = () => {
         <div>
             <Row style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", width: "100%" }}>
                 <Headliner>create post</Headliner>
-                <Col style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", marginTop: 20 }}>
-                    <div className="btn" >
-                        + add new
-            </div>
-                </Col>
             </Row>
-            <Divider />
-            <Row className="create-post-container">
-                <Col md={2} />
-                <Col>
+            <Row >
+                <Col md={8} className="create-post-container" >
                     <Row>
                         <Col><InputPromptText>title</InputPromptText></Col>
                     </Row>
@@ -182,11 +175,14 @@ const CreatePost = () => {
                         </Col>
                     </Row>
                     <Row style={{ marginTop: 35 }}>
-                        <Col md={6} ><div className="btn">  cancel  </div></Col>
+                        <Col md={6} ><div className="btn outline">  cancel  </div></Col>
                         <Col md={6} ><div className="btn" onClick={()=> handleSubmit(submit)()}>  post  </div></Col>
                     </Row>
                 </Col>
-                <Col md={2} />
+
+                <Col md={4} className="" >
+                    probably some ads over here or free offers
+                </Col>
             </Row>
 
 

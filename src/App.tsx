@@ -2,7 +2,6 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { Container, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'antd/dist/antd.css';
 import './assets/css/style.css'

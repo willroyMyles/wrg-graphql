@@ -3,15 +3,20 @@ import { Input, Space } from 'antd'
 import React, { Dispatch } from 'react'
 import { Card, Row, Col } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
-import { CREATE_COMMENT } from '../data-layer/api/Queries'
+import { CREATE_COMMENT, GET_COMMENTS } from '../data-layer/api/Queries'
 import FormControler from './FormControler'
 
 const CommentBox = ({ visable, setVisible, id, isOffer }: { visable: boolean, setVisible: Dispatch<boolean>, id:string, isOffer:boolean }) => {
 
 
-    const [createComment,  mutationOption] = useMutation(CREATE_COMMENT)
+    const [createComment,  mutationOption] = useMutation(CREATE_COMMENT, {
+        refetchQueries:[{
+            query: GET_COMMENTS,
+            variables:{id:id}
+        }]
+    })
 
-    const { control, handleSubmit } = useForm<{
+    const { control, handleSubmit, setValue } = useForm<{
         content: string
     }>()
 
@@ -19,6 +24,10 @@ const CommentBox = ({ visable, setVisible, id, isOffer }: { visable: boolean, se
         console.log(data);
         createComment({
             variables : {comment : {post : id, content: data["content"], isOffer : isOffer}}
+        }).then(res=>{
+            setValue("content", "");
+        }).catch(err=>{
+
         })
     }
 
