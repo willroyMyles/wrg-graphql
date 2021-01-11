@@ -83,3 +83,26 @@ export const CREATE_COMMENT = gql`
     }
   }
 `
+
+export const REGISTER = gql`
+  mutation register($data : UsersPermissionsRegisterInput!){
+    register(input: $data){
+      jwt
+      user{
+        id
+        username
+      }
+    }
+  }
+`
+
+export const LOGIN = gql`
+  mutation login($data: UsersPermissionsLoginInput!){
+    login(input: $data){
+      jwt
+      user{
+        id
+      }
+    }
+  }
+`

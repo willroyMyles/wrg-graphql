@@ -6,6 +6,7 @@
 
     --offer-primary : rgb(228, 13, 13);
     --offer-secondary : rgb(255, 220, 220);;
+    --error : rgba(255,0,0,1);
    
 
     --borderRadius : 7px;
@@ -212,6 +213,11 @@ body{
   }
   .inputs::placeholder{
       font-size: 1rem;
+  }
+
+  .input-errors{
+    border-left: 5px solid var(--error);
+
   }
 
   
