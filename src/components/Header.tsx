@@ -1,8 +1,10 @@
 import useBreakpoint from 'antd/lib/grid/hooks/useBreakpoint';
+import { observer } from 'mobx-react';
 import React from 'react'
 import { Col, Container, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { setSyntheticTrailingComments } from 'typescript'
+import data_store from '../data-layer/store/data_manager';
 
 function Header() {
 
@@ -32,8 +34,9 @@ function Header() {
       <Nav.Link className="header-link"><span onClick={()=> history.replace("/categories")} >Categories</span></Nav.Link>
     </Nav>
     <Nav >
-      <Nav.Link className="header-link"><span onClick={()=> history.replace("/auth")} >Login</span></Nav.Link>
-    </Nav>
+{ data_store.jwt == "" &&  <Nav.Link className="header-link"><span onClick={()=> history.replace("/auth")} >Login</span></Nav.Link>}    
+{ data_store.jwt != "" && <Nav.Link className="header-link"><span onClick={()=> history.replace("/profile")} >Profile</span></Nav.Link>}    
+</Nav>
   </Navbar.Collapse>
 </Navbar>
 </Container>
@@ -41,7 +44,7 @@ function Header() {
     )
 }
 
-export default Header
+export default observer(Header)
 
 const style : React.CSSProperties = {
     backgroundColor:"rgba(100,100,200,1)",

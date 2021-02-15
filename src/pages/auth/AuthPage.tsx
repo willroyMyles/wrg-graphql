@@ -18,7 +18,7 @@ const AuthPage = () => {
 
     return (
         <div>
-           <Row>
+           <Row className="auth-holder">
                <Col />
                <Col  md={6}>
                <Card className="post-card" style={{minHeight:"50vh"}}>

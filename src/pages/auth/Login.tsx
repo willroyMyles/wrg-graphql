@@ -1,11 +1,13 @@
 import { useMutation } from '@apollo/client'
-import { Input, Space } from 'antd'
-import React from 'react'
+import { Input, message, Space } from 'antd'
+import { observer } from 'mobx-react'
+import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import FormControler from '../../components/FormControler'
 import { Headliner } from '../../components/Typography'
 import { LOGIN } from '../../data-layer/api/Queries'
+import data_store from '../../data-layer/store/data_manager'
 
 interface FormProps{
     username:string
@@ -15,6 +17,7 @@ interface FormProps{
 const Login = ({change} : {change : (index:number)=>void }) => {
 
     const { control, handleSubmit, errors } = useForm<FormProps>();
+    const [alertObj, setAlertObj] = useState<String[]>(["success", "hello world"])
 
     const [login, options] = useMutation(LOGIN)
 
@@ -27,9 +30,11 @@ const Login = ({change} : {change : (index:number)=>void }) => {
             variables : {data : {identifier : username, password:password}}
         }).then(res=>{
             console.log(res);
-            
+            message.success("Login sucessful. redirecting...");
+            data_store.jwt = res.data.login.jwt;            
         }).catch(err=>{
             console.log(err.graphQLErrors[0].extensions.exception.data.data[0].messages[0].message);
+            message.error(err.graphQLErrors[0].extensions.exception.data.data[0].messages[0].message)
         })
         
 
@@ -39,7 +44,6 @@ const Login = ({change} : {change : (index:number)=>void }) => {
         <div>
             <Row>
                 <Headliner>Login</Headliner>
-
             </Row>
             <Row>
                 <Col>
@@ -78,4 +82,4 @@ const Login = ({change} : {change : (index:number)=>void }) => {
     )
 }
 
-export default Login
+export default observer(Login)

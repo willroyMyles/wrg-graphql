@@ -8,6 +8,7 @@ import AuthPage from './pages/auth/AuthPage'
 import Categories from './pages/Categories'
 import CreatePost from './pages/CreatePost'
 import Home from './pages/Home'
+import Profile from './pages/Profile'
 import ViewPost from './pages/ViewPost'
 import Category from './templates/Category'
 
@@ -22,12 +23,13 @@ const MiddleHolder = observer(()  =>{
        
     }, [ui_manager.drawerVisible])
     return (
-        <Container style={{overflowX:"hidden"}}>
+        <Container style={{overflowX:"hidden", overflowY:"visible"}}>
         <Row>
           {/* <Col md={2}></Col> */}
           <Col>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/auth" component={AuthPage} />
               <Route exact path="/categories" component={Categories} />
               <Route exact path="/category" component={Category} />
